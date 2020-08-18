@@ -1,5 +1,5 @@
 {
-  "name": "thesportsdb",
+  "name": "@gpsanant/thesportsdb",
   "version": "1.0.0",
   "description": "A JavaScript llibrary for interfacing with theSportsDB API",
   "main": "index.js",
@@ -16,7 +16,7 @@
     "url": "https://github.com/gpsanant/theSportsDB/issues"
   },
   "homepage": "https://github.com/gpsanant/theSportsDB#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/gpsanant" },
   "dependencies": {
     "axios": "^0.19.2"
   }
