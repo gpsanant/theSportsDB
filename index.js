@@ -7,21 +7,28 @@ module.exports = {
         apiKey = key
     },
     async getTeamByName(name){
+        name = makeUrl(name)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/searchteams.php?t=${name}`)).data;
     },
     async getTeamByShortCode(code){
+        code = makeUrl(code)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/searchteams.php?sname=${code}`)).data;
     },
     async getAllPlayersByTeam(name){
+        name = makeUrl(name)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/searchplayers.php?t=${name}`)).data;
     },
     async getPlayerByName(name, team){
+        name = makeUrl(name)
+        team = makeUrl(team)
         var params = []
         params.push(`p=${name}`)
         if(team) params.push(`t=${team}`)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/searchplayers.php?${params.join('&')}`)).data;
     },
     async getEventByName(name, season){
+        name = makeUrl(name)
+        season = makeUrl(season)
         var params = []
         params.push(`e=${name}`)
         if(season) params.push(`s=${season}`)
@@ -37,6 +44,8 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/all_countries.php`)).data;
     },
     async getLeagueListByCountry(country, sport){
+        country = makeUrl(country)
+        sport = makeUrl(sport)
         var params = []
         params.push(`c=${country}`)
         if(sport) params.push(`s=${sport}`)
@@ -46,12 +55,16 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/search_all_seasons.php?id=${id}`)).data;
     },
     async getTeamsByLeagueName(name){
+        name = makeUrl(name)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/search_all_teams.php?l=${name}`)).data;
     },
     async getTeamsByLeagueName(name){
+        name = makeUrl(name)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/search_all_teams.php?l=${name}`)).data;
     },
     async getTeamsByCountryAndSport(sport, country){
+        country = makeUrl(country)
+        sport = makeUrl(sport)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/search_all_teams.php?s=${sport}&c=${country}`)).data;
     },
     // async getTeamDetailsById(id){
@@ -61,6 +74,7 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/lookup_all_players.php?id=${id}`)).data;
     },
     async getUsersLoved(user){
+        user = makeUrl(user)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/searchloves.php?u=${user}`)).data;
     },
     async getLeagueDetailsById(id){
@@ -109,6 +123,8 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventsround.php?id=${id}&r=${round}&s=${season}`)).data;
     },
     async getEventsOnDay(day, sport, name){
+        sport = makeUrl(sport)
+        name = makeUrl(name)
         var params = []
         if(day) params.push(`d=${day}`)
         if(name) params.push(`l=${name}`)
@@ -116,6 +132,8 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventsday.php?${params.join('&')}`)).data;
     },
     async getTvEventsOnDay(day, sport, country){
+        sport = makeUrl(sport)
+        country = makeUrl(country)
         var params = []
         if(day) params.push(`d=${day}`)
         if(country) params.push(`a=${league}`)
@@ -123,9 +141,10 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventstv.php?${params.join('&')}`)).data;
     },
     async getTvEventsByChannel(channel){
+        channel = makeUrl(channel)
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventstv.php?c=${channel}`)).data;
     },
-    async getEventsByLeagueIdAndSeason(channel){
+    async getEventsByLeagueIdAndSeason(id, season){
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventsseason.php?id=${id}&s=${season}`)).data;
     },
     async getImage(id){
@@ -135,6 +154,8 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/images/media/league/fanart/${id}.jpg/preview`)).data;
     },
     async getYoutubeEventHighligts(day, league, sport){
+        league = makeUrl(league)
+        sport = makeUrl(sport)
         var x = []
         if(day) x.push(`d=${day}`)
         if(league) x.push(`l=${league}`)
@@ -148,6 +169,7 @@ module.exports = {
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/latestsoccer.php`)).data;
     },
     async getLivescoresBySport(sport){
+        sport = makeUrl(sport)
         return (await axios.get(`https://www.thesportsdb.com/api/v2/json/${apiKey}/livescore.php?s=${sport}`)).data;
     },
     async getGolfLivescores(){
@@ -159,4 +181,9 @@ module.exports = {
     async getAmericanFootballLivescores(){
         return (await axios.get(`https://www.thesportsdb.com/api/v1/json/${apiKey}/latestamericanfootball.php`)).data;
     }
+}
+
+function makeUrl(x){
+    if(!x) return x;
+    return x.split(" ").join("_");
 }
