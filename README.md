@@ -9,7 +9,7 @@ npm install thesportsdb
 
 # Example Usage
 ```js script
-const theSportsDB = require('theSportsDB');
+const theSportsDB = require('thesportsdb');
 (async() => {
     theSportsDB.setApiKey(808) //defaults to 1, set for Patreon
     //works with space, underscores, or "%20"s
