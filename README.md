@@ -1,5 +1,11 @@
 # theSportsDB
 Library for The Sports DB API
+For questions, email me at gpsanant@gmail.com
+
+# Installation
+```js script
+npm install thesportsdb
+```
 
 # Example Usage
 ```js script
