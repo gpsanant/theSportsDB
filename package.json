@@ -1,7 +1,7 @@
 {
   "name": "@gpsanant/thesportsdb",
-  "version": "1.0.0",
-  "description": "A JavaScript llibrary for interfacing with theSportsDB API",
+  "version": "0.0.1",
+  "description": "A JavaScript library for interfacing with theSportsDB API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,8 +15,16 @@
   "bugs": {
     "url": "https://github.com/gpsanant/theSportsDB/issues"
   },
+  "keywords": [
+    "sports",
+    "thesportsdb",
+    "api",
+    "sport"
+  ],
   "homepage": "https://github.com/gpsanant/theSportsDB#readme",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/gpsanant" },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/gpsanant"
+  },
   "dependencies": {
     "axios": "^0.19.2"
   }
