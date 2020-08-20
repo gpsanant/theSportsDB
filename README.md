@@ -1,5 +1,5 @@
 # theSportsDB
-Library for The Sports DB API
+Library for The Sports DB API <br>
 For questions, email me at gpsanant@gmail.com
 
 # Installation
